@@ -16,8 +16,14 @@ namespace ConsoleApp
 
             string[] array = new string[size];
 
+            Console.WriteLine("Инициализация массива...");
             FillArray(array);
+
+            Console.WriteLine("Вывод заполненного исходного массива...");
             PrintArray(array);
+
+            Console.WriteLine("Вывод отфильтрованного массива...");
+            PrintArray(ParsingArray(array));
 
 
             void FillArray(string[] array)
@@ -44,6 +50,29 @@ namespace ConsoleApp
                 }
 
                 Console.WriteLine();
+            }
+
+            string[] ParsingArray(string[] array)
+            {
+                int rows = array.GetLength(0);
+                int sizeNew = 0;
+
+                for (int i = 0; i < rows; i++)
+                {
+                    if (array[i].Length <= 3)
+                        sizeNew++;
+                }
+                string[] newArray = new string[sizeNew];
+                for (int i = 0, j = 0; i < rows; i++)
+                {
+                    if (array[i].Length <= 3)
+                    {
+                        newArray[j] = array[i];
+                        j++;
+                    }
+                }
+
+                return newArray;
             }
 
 
